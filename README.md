@@ -7,6 +7,7 @@ This program requires the following dependencies to be installed:
 
 nltk
 wordcloud
+
 You can install them by running 
 ``` pip install nltk ```
 ``` pip install wordcloud ```
