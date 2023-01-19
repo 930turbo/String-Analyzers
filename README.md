@@ -34,4 +34,4 @@ The program returns several outputs:
 - The program uses the SentimentIntensityAnalyzer to perform sentiment analysis on the data string.
 - The program uses the nltk.FreqDist() function to create a frequency distribution of the words in the data string
 - The program uses the Counter from python's collections module to count the occurrences of each letter and punctuation mark
--The program uses the most_common() method of Counter to find the most common letter and word.
+- The program uses the most_common() method of Counter to find the most common letter and word.
