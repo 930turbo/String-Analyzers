@@ -3,6 +3,7 @@
 from collections import Counter
 from nltk.corpus import stopwords
 from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk import FreqDist
 from nltk.tokenize import word_tokenize
 from wordcloud import WordCloud
 from storm import Spout, emit, log
