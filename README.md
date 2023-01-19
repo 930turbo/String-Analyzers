@@ -1,6 +1,6 @@
 # String-Analyzer
 
-This project is a Python program that analyzes data in string form. The program takes in a data string as input and performs several analysis tasks on it, including counting the number of words, counting the occurrences of each letter, finding the most common letter, counting the occurrences of each punctuation mark, identifying the most common word, analyzing the sentiment of the data, creating a frequency distribution of the words, and creating a wordcloud of the most frequent words.
+This project is a Python program that analyzes data in string form. Depending on which is ran, the program takes in a data string or query as input and performs several analysis tasks on it, including counting the number of words, counting the occurrences of each letter, finding the most common letter, counting the occurrences of each punctuation mark, identifying the most common word, analyzing the sentiment of the data, creating a frequency distribution of the words, and creating a wordcloud of the most frequent words. 
 
 ## Dependencies
 These programs require the following dependencies to be installed:
