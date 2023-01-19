@@ -7,7 +7,9 @@ This program requires the following dependencies to be installed:
 
 nltk
 wordcloud
-You can install them by running pip install nltk wordcloud
+You can install them by running 
+``` pip install nltk ```
+``` pip install wordcloud ```
 
 ## Input
 The program takes in a single input, the data string. This string can contain any combination of letters, numbers, and punctuation marks.
