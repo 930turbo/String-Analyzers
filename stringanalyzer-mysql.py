@@ -1,4 +1,15 @@
 import mysql.connector
+import nltk
+from nltk.sentiment import SentimentIntensityAnalyzer
+from nltk import FreqDist
+nltk.download('punkt')
+nltk.download('vader_lexicon')
+from collections import Counter
+from nltk.corpus import stopwords
+from wordcloud import WordCloud
+
+# Initialize SentimentIntensityAnalyzer
+sentiment_analyzer = SentimentIntensityAnalyzer()
 
 # Connect to the MySQL database
 cnx = mysql.connector.connect(user='username', password='password',
