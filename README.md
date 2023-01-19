@@ -5,12 +5,10 @@ This project is a Python program that analyzes data in string form. The program 
 ## Dependencies
 This program requires the following dependencies to be installed:
 
-nltk |
-wordcloud
-
 You can install them by running 
 ``` pip install nltk ```
 ``` pip install wordcloud ```
+``` pip install mysql-connector-python ```
 
 ## Input
 The program takes in a single input, the data string. This string can contain any combination of letters, numbers, and punctuation marks.
@@ -37,6 +35,3 @@ The program uses the SentimentIntensityAnalyzer to perform sentiment analysis on
 The program uses the nltk.FreqDist() function to create a frequency distribution of the words in the data string
 The program uses the Counter from python's collections module to count the occurrences of each letter and punctuation mark
 The program uses the most_common() method of Counter to find the most common letter and word.
-
-## Using This Program For Large Data Sets
-Instead of inputting the data as a string, you can store the data in a database such as MySQL or MongoDB. You can then query the database to retrieve the data and process it in the program. You can also use a data processing framework like Apache Spark or Apache Hadoop to process the data. These frameworks allow you to perform distributed processing on large amounts of data, which can significantly improve performance and scalability.
