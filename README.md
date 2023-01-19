@@ -5,7 +5,7 @@ This project is a Python program that analyzes data in string form. The program 
 ## Dependencies
 This program requires the following dependencies to be installed:
 
-nltk
+nltk |
 wordcloud
 
 You can install them by running 
