@@ -3,7 +3,7 @@
 This project is a Python program that analyzes data in string form. The program takes in a data string as input and performs several analysis tasks on it, including counting the number of words, counting the occurrences of each letter, finding the most common letter, counting the occurrences of each punctuation mark, identifying the most common word, analyzing the sentiment of the data, creating a frequency distribution of the words, and creating a wordcloud of the most frequent words.
 
 ## Dependencies
-This program requires the following dependencies to be installed:
+These programs require the following dependencies to be installed:
 
 You can install them by running 
 ``` pip install nltk ```
@@ -11,7 +11,7 @@ You can install them by running
 ``` pip install mysql-connector-python ```
 
 ## Input
-The program takes in a single input, the data string. This string can contain any combination of letters, numbers, and punctuation marks.
+These programs take in an input, the data string. This string can contain any combination of letters, numbers, and punctuation marks.
 
 ## Output
 The program returns several outputs:
