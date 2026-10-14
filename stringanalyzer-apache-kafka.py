@@ -1,39 +1,42 @@
-# Reminder! You will have to set up the kafka consumer and configure it to consume data from the correct topic before you can start getting data from kafka.
+"""Optional Kafka adapter: bounded UTF-8 messages, JSON Lines output."""
+import argparse
+import json
+import sys
+from analyzer.core import MAX_CHARS, analyze
 
-from collections import Counter
-from nltk.corpus import stopwords
-from nltk.sentiment import SentimentIntensityAnalyzer
-from nltk import FreqDist
-from nltk.tokenize import word_tokenize
-from wordcloud import WordCloud
-from storm import Spout, emit, log
-import nltk
 
-nltk.download("stopwords")
+def main():
+    p = argparse.ArgumentParser(description=__doc__)
+    p.add_argument("--bootstrap-servers", default="localhost:9092")
+    p.add_argument("--topic", required=True)
+    p.add_argument("--group", default="string-analyzer")
+    p.add_argument("--max-messages", type=int, default=100)
+    p.add_argument("--timeout-ms", type=int, default=10000)
+    a = p.parse_args()
+    if a.max_messages < 1 or a.timeout_ms < 1:
+        p.error("Message count and timeout must be positive.")
+    try:
+        from kafka import KafkaConsumer
+    except ImportError:
+        p.error("Install optional adapter: pip install kafka-python")
+    consumer = KafkaConsumer(a.topic, bootstrap_servers=a.bootstrap_servers.split(","),
+        group_id=a.group, enable_auto_commit=False, consumer_timeout_ms=a.timeout_ms)
+    try:
+        for index, message in enumerate(consumer, 1):
+            try:
+                if message.value is None: raise ValueError("Tombstone has no text")
+                if len(message.value) > MAX_CHARS * 4: raise ValueError("Message exceeds size limit")
+                report = {"topic": message.topic, "partition": message.partition,
+                    "offset": message.offset, "analysis": analyze(message.value.decode("utf-8"))}
+                print(json.dumps(report, ensure_ascii=False), flush=True)
+            except (UnicodeError, ValueError) as error:
+                print(f"Skipped offset {message.offset}: {error}", file=sys.stderr)
+            if index >= a.max_messages: break
+    except KeyboardInterrupt:
+        pass
+    finally:
+        consumer.close()
 
-class KafkaSpout(Spout):
-    def initialize(self, stormconf, context):
-        self.sentiment_analyzer = SentimentIntensityAnalyzer()
-        self.stop_words = set(stopwords.words("english"))
 
-    def nextTuple(self):
-        # Get data from Kafka
-        
-          # The poll() method takes a timeout value as an argument, 
-          # which is the time in seconds to wait for new data to arrive. 
-          # In this example, the timeout value is set to 1 second.
-        data = self.kafka_consumer.poll(1.0)
-        words = word_tokenize(data)
-        filtered_words = [word for word in words if word.lower() not in self.stop_words]
-        word_count = len(filtered_words)
-        letter_count = Counter(c for c in data if c.isalpha())
-        most_common_letter = letter_count.most_common(1)[0][0]
-        punctuation_count = Counter(c for c in data if not c.isalpha())
-        most_common_word = Counter(filtered_words).most_common(1)[0][0]
-        sentiment = self.sentiment_analyzer.polarity_scores(data)
-        fdist = nltk.FreqDist(filtered_words)
-        wordcloud = WordCloud().generate_from_frequencies(fdist)
-        wordcloud.to_file("wordcloud.png")
-
-        # Emit the results
-        emit([word_count, letter_count, most_common_letter, punctuation_count, most_common_word, sentiment, fdist])
+if __name__ == "__main__":
+    main()

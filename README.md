@@ -1,37 +1,32 @@
-# String-Analyzer
+# String Analyzer
 
-This project is a Python program that analyzes data in string form. Depending on which is ran, the program takes in a data string or query as input and performs several analysis tasks on it, including counting the number of words, counting the occurrences of each letter, finding the most common letter, counting the occurrences of each punctuation mark, identifying the most common word, analyzing the sentiment of the data, creating a frequency distribution of the words, and creating a wordcloud of the most frequent words. 
+A lightweight, offline text workbench with live statistics, phrase analysis, text cleanup, and a dark desktop UI. No account. No model downloads.
 
-## Dependencies
-These programs require the following dependencies to be installed:
+[![Get Windows build](https://img.shields.io/badge/Get-Windows_build-a995ff?style=for-the-badge&logo=windows&logoColor=white)](https://github.com/930turbo/String-Analyzers/actions/workflows/build.yml)
 
-You can install them by running 
-``` pip install nltk ```
-``` pip install wordcloud ```
-``` pip install mysql-connector-python ```
+[![Build](https://github.com/930turbo/String-Analyzers/actions/workflows/build.yml/badge.svg)](https://github.com/930turbo/String-Analyzers/actions/workflows/build.yml)
+![Python 3.10+](https://img.shields.io/badge/Python-3.10%2B-8bd8ba)
+![Runtime dependencies](https://img.shields.io/badge/Runtime_dependencies-0-a995ff)
 
-## Input
-These programs take in an input, the data string. This string can contain any combination of letters, numbers, and punctuation marks.
+Open **StringAnalyzer.exe**, paste your text, and explore. For a Windows build, open a successful workflow run and download **StringAnalyzer-Windows** under Artifacts (GitHub sign-in required). Extract the ZIP and run the EXE; no installer or Python needed.
 
-## Output
-The program returns several outputs:
+- See word, character, sentence, paragraph, vocabulary, and reading-time statistics update as you type.
+- Explore words, letters, punctuation, repeated two- and three-word phrases, and a word cloud.
+- Filter common English words, preserve case, and highlight text matches.
+- Clean up whitespace, change case, normalize Unicode, sort or deduplicate lines. Undo edits.
+- Open UTF-8 files and export complete JSON, CSV, or text reports. Use the same engine from the command line.
+- Optional MySQL and Kafka adapters stream reports without adding dependencies to the desktop app.
 
-- Word count: the number of words in the data string
-- Letter count: a dictionary containing the occurrences of each letter in the data string
-- Most common letter: the letter that occurs the most in the data string
-- Punctuation count: a dictionary containing the occurrences of each punctuation mark in the data string
-- Most common word: the word that occurs the most in the data string
-- Sentiment of the data: a dictionary containing the overall sentiment of the data string as calculated by NLTK's SentimentIntensityAnalyzer
-- Frequency Distribution: a dictionary containing the frequency of each word in the data string
-- wordcloud.png: a file that contains the wordcloud of the most frequent words in the data string
-- output.txt: a file that contains all the outputs of the program
+<details>
+<summary>App preview</summary>
 
-## Additional notes
-- The program uses NLTK's stopwords to remove common words like "a", "an", "the", etc. from the data string before counting the words and letters.
-- The program uses NLTK's tokenize function to tokenize the data string into a list of words
-- The program uses the WordCloud library to create a wordcloud of the most frequent words in the data string.
-- The program uses the open() function to open a file and write() function to write the results in the file
-- The program uses the SentimentIntensityAnalyzer to perform sentiment analysis on the data string.
-- The program uses the nltk.FreqDist() function to create a frequency distribution of the words in the data string
-- The program uses the Counter from python's collections module to count the occurrences of each letter and punctuation mark
-- The program uses the most_common() method of Counter to find the most common letter and word.
+<img src="docs/images/overview.png" alt="String Analyzer dark desktop workspace with live statistics" width="900">
+<img src="docs/images/word-cloud.png" alt="Word cloud with words sized by frequency" width="900">
+
+</details>
+
+**Run from source:** Python 3.10+ with Tk installed, then `python stringanalyzer.py`. No pip install required. Windows 10/11 is the portable build target; source also runs on macOS and Linux with Tk.
+
+Analysis is local and accepts up to 2,000,000 characters. Tone is a small English word-list heuristic; sentence splitting and reading time are estimates. No text or settings are saved automatically.
+
+[Usage](docs/USAGE.md) | [Development & builds](docs/DEVELOPMENT.md) | [What changed in v2](docs/CHANGELOG.md)
