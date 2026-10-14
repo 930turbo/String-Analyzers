@@ -54,6 +54,7 @@ class App:
         s.configure("Treeview.Heading", background=PANEL, foreground=MUTED, padding=8)
         s.map("Treeview", background=[("selected", "#49406b")])
         s.configure("TCombobox", fieldbackground=FIELD, foreground=TEXT, arrowcolor=TEXT)
+        s.map("TCombobox", fieldbackground=[("readonly", FIELD)], foreground=[("readonly", TEXT)], selectbackground=[("readonly", FIELD)], selectforeground=[("readonly", TEXT)])
 
     def label(self, parent, text, size=10, color=TEXT, bg=BG, **kw):
         return tk.Label(parent, text=text, bg=bg, fg=color, font=("Segoe UI", size), **kw)
